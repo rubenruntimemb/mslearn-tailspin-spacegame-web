@@ -1,3 +1,12 @@
-pool: MyAgentPool
+pool:
+  vmImage: 'windows-latest'
+
 steps:
-- bash: echo hello world
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
